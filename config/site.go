@@ -1,17 +1,17 @@
-package models
+package config
 
 import (
 	"fmt"
 	"os"
 )
 
-type URL struct {
+type SITE struct {
 	PROTOCOL string
 	HOST     string
 	PORT     string
 }
 
-func (c *URL) Init() {
+func (c *SITE) Init() {
 	fmt.Println("Initializing config...")
 
 	c.PROTOCOL = os.Getenv("PROTOCOL")
@@ -19,6 +19,6 @@ func (c *URL) Init() {
 	c.PORT = os.Getenv("PORT")
 }
 
-func (c *URL) GetURL() string {
+func (c *SITE) GetSite() string {
 	return fmt.Sprintf("%s://%s:%s", c.PROTOCOL, c.HOST, c.PORT)
 }

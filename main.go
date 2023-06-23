@@ -7,42 +7,40 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
+	"github.com/trananhtung/url-shortener/config"
 	"github.com/trananhtung/url-shortener/models"
-	"github.com/trananhtung/url-shortener/utils"
 )
+
+var link = config.SITE{}
 
 func init() {
 	fmt.Println("Initializing config...")
 	err := godotenv.Load(".env")
 	if err != nil {
-		log.Fatalf("Some error occured. Err: %s", err)
+		log.Fatalf("Some error occurred. Err: %s", err)
 	}
+
+	link.Init()
 }
 
 func main() {
 	r := gin.Default()
-	link := models.URL{}
 
-	link.Init()
-	fmt.Println(link.GetURL())
-	url := link.GetURL()
+	url := link.GetSite()
 
 	r.POST("/shorten", func(c *gin.Context) {
-		var json struct {
-			URL string `json:"url" binding:"required"`
-		}
+		var json models.CreateShortenURL
 
 		if c.Bind(&json) == nil {
-
-			// Validate the URL
-			err := utils.ValidateURL(json.URL)
+			err := json.Validate()
 			if err != nil {
 				c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 				return
 			}
+			fmt.Println(json)
 
-			shortURL := url + "/" + utils.HashURL(json.URL)
-			c.JSON(http.StatusOK, gin.H{"shortened": shortURL})
+			shortURL := url + "/" + json.HashURL()
+			c.JSON(http.StatusOK, gin.H{"url": shortURL})
 		}
 	})
 
