@@ -11,3 +11,55 @@ This repository is a URL shortener implemented using the Go programming language
 4. Persistence: The repository ensures the persistence of short URLs and their mappings to the original URLs. It employs a database or a storage mechanism to store and retrieve the necessary information, ensuring that shortened URLs remain functional over time.
 
 5. Analytics: The system may include analytics functionality to track and analyze the usage of shortened URLs. This feature allows users to monitor the number of clicks, geographic distribution, referral sources, and other relevant metrics.
+
+# API Endpoints
+
+## POST /shorten
+
+Create a shortened URL.
+
+**Request**
+
+Request body should contain a JSON object with the following fields:
+
+```json
+{
+  "url": "The original URL to be shortened"
+}
+```
+Response
+
+Returns the shortened URL in the response body.
+
+## POST /shorten/:hash
+Create a shortened URL with a custom hash.
+
+Path Parameters
+
+hash: The custom hash to be used for the shortened URL
+Request
+
+Request body should contain a JSON object with the following fields:
+
+```json
+{
+  "url": "The original URL to be shortened"
+}
+```
+
+Response
+
+Returns the shortened URL in the response body.
+
+## GET /:hash
+
+Redirect to the original URL.
+
+
+## GET /record
+
+Get all the records of ip address and url.
+
+## GET /all
+
+Get all the shortened URLs.

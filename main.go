@@ -86,6 +86,17 @@ func main() {
 		c.JSON(http.StatusOK, gin.H{"urls": urls})
 	})
 
+	r.GET("/record", func(c *gin.Context) {
+		urls, err := DB.FindAllRecordIP()
+		if err != nil {
+			log.Println(err)
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+
+		c.JSON(http.StatusOK, gin.H{"urls": urls})
+	})
+
 	r.GET("/:hash", func(c *gin.Context) {
 		hash := c.Param("hash")
 		url, err := DB.Find(hash)
@@ -95,10 +106,7 @@ func main() {
 			return
 		}
 
-		// get ip address
-		ip := c.ClientIP()
-
-		fmt.Println("ip: ", ip)
+		go DB.CreateRecordIP(hash, c.ClientIP())
 
 		c.Redirect(http.StatusMovedPermanently, url)
 	})
