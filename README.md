@@ -63,3 +63,118 @@ Get all the records of ip address and url.
 ## GET /all
 
 Get all the shortened URLs.
+
+# POSTMAN Collection
+
+json```
+{
+	"info": {
+		"_postman_id": "136a03e0-f21b-46f6-aea2-26cd6f9b0c45",
+		"name": "URL Shortener",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "19335676",
+		"_collection_link": "https://www.postman.com/tunganhtran/workspace/hr-system/collection/19335676-136a03e0-f21b-46f6-aea2-26cd6f9b0c45?action=share&creator=19335676&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/3pZ6Xv2v8nX8Rj"
+			},
+			"response": []
+		},
+		{
+			"name": "get all record",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/all"
+			},
+			"response": []
+		},
+		{
+			"name": "get all shorten link",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/all"
+			},
+			"response": []
+		},
+		{
+			"name": "create shorten link",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"url\": \"google.com\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/shorten",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"shorten"
+					],
+					"query": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create shorten link customize",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"url\": \"google.com\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/shorten",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"shorten"
+					],
+					"query": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
+```
