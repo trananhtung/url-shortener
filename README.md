@@ -66,7 +66,7 @@ Get all the shortened URLs.
 
 # POSTMAN Collection
 
-json```
+```json
 {
 	"info": {
 		"_postman_id": "136a03e0-f21b-46f6-aea2-26cd6f9b0c45",
